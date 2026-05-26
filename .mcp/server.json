@@ -1,0 +1,12 @@
+{
+  "name": "se.zaragsoft.hawkeye-aibridge",
+  "description": "Use Hawkeye local code and content search from MCP-compatible AI coding assistants.",
+  "status": "active",
+  "repository": {
+    "url": "https://github.com/Zaragsoft/hawkeye-aibridge-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "homepage": "https://www.zaragsoft.se/aibridge",
+  "documentation": "https://github.com/Zaragsoft/hawkeye-aibridge-mcp#readme"
+}

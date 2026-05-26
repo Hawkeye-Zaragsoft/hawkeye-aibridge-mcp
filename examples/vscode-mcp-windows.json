@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "hawkeye": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\Hawkeye\\HawkeyeAIBridge.exe",
+      "args": []
+    }
+  }
+}
