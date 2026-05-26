@@ -26,6 +26,9 @@ Typical use cases:
 - Navigate large game/software projects with less reliance on tribal knowledge.
 - Keep search local/on-premises.
 - Better overview.
+- Token savings listed below.
+  <img width="1371" height="841" alt="image" src="https://github.com/user-attachments/assets/2ce83c09-1302-4e07-b226-d23d14b676ee" />
+
 
 ## Installation
 
