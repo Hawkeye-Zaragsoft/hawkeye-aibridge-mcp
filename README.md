@@ -64,6 +64,16 @@ Typical use cases:
 
 Adjust the path if Hawkeye AI Bridge is installed somewhere else.
 
+### Install the Hawkeye skill
+
+Copy `hawkeye-search.skill` to one of these locations:
+
+**Global (all VS Code projects):**
+~/.claude/skills/
+
+**Or workspace-specific:**
+.claude/skills/
+
 ## Example prompts
 
 Ask your AI coding assistant:
