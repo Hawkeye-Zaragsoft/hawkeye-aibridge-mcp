@@ -2,7 +2,7 @@
 
 Use Hawkeye from VS Code Agent Chat and other MCP-compatible AI coding assistants.
 
-Hawkeye AI Bridge exposes Hawkeye’s fast local search capabilities and overview through the Model Context Protocol (MCP), making it possible for AI coding assistants to search large codebases, assets, sounds files, models, text files, localization files, and project content through Hawkeye.
+Hawkeye AI Bridge exposes Hawkeye's fast local search capabilities and overview through the Model Context Protocol (MCP), making it possible for AI coding assistants to search large codebases, assets, sounds files, models, text files, localization files, and project content through Hawkeye.
 
 Hawkeye runs locally/on-premises. Your code is not uploaded by Hawkeye, and Hawkeye itself does not use AI for indexing or searching.
 
@@ -27,16 +27,17 @@ Typical use cases:
 - Keep search local/on-premises.
 - Better overview.
 - Token savings listed below.
-  <img width="1371" height="841" alt="image" src="https://github.com/user-attachments/assets/2ce83c09-1302-4e07-b226-d23d14b676ee" />
+
+<img width="1371" height="841" alt="image" src="https://github.com/user-attachments/assets/2ce83c09-1302-4e07-b226-d23d14b676ee" />
 
 
 ## Installation
 
 1. Download and install Hawkeye from:
-  https://www.zaragsoft.se/downloads
+   https://www.zaragsoft.se/downloads
 
 2. Download and install Hawkeye AI Bridge from:
-  https://www.zaragsoft.se/aibridge
+   https://www.zaragsoft.se/aibridge
 
 3. Open VS Code.
 
@@ -100,8 +101,8 @@ Ask your AI coding assistant:
 - Hawkeye installed.
 - Hawkeye AI Bridge installed.
 - VS Code with Agent Mode / MCP support.
-- A local project indexed by Hawkeye. Video on how to setup here.
-https://www.youtube.com/watch?v=l1J-G36QSwI
+- A local project indexed by Hawkeye. Video on how to setup here:
+  https://www.youtube.com/watch?v=l1J-G36QSwI
 
 ## Supported platforms
 
