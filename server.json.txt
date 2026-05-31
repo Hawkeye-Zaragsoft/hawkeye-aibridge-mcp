@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.hawkeye-zaragsoft/hawkeye-aibridge",
+  "title": "Hawkeye AI Bridge",
+  "description": "Fast local codebase search for AI coding assistants via MCP. Searches large codebases, assets, localization files, and project content without uploading your code. Requires Hawkeye (https://www.zaragsoft.se/downloads) and Hawkeye AI Bridge (https://www.zaragsoft.se/aibridge) to be installed locally first.",
+  "repository": {
+    "url": "https://github.com/Hawkeye-Zaragsoft/hawkeye-aibridge-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/Hawkeye-Zaragsoft/hawkeye-aibridge-mcp/releases/download/HawkeyeAIBridge/hawkeye-ai-bridge-1.0.0.mcpb",
+      "fileSha256": "c48e16a6b4b4cef587511e804df795e011130c6bc07c34c77ce6844fb477b2c3",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
