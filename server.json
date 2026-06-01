@@ -7,7 +7,7 @@
     "url": "https://github.com/Hawkeye-Zaragsoft/hawkeye-aibridge-mcp",
     "source": "github"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "packages": [
     {
       "registryType": "mcpb",
