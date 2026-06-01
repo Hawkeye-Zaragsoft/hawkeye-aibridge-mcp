@@ -1,12 +1,34 @@
 # Hawkeye AI Bridge MCP Server
 
-Use Hawkeye from VS Code Agent Chat and other MCP-compatible AI coding assistants.
+Use Hawkeye from AI coding assistants via the Model Context Protocol (MCP).
 
-Hawkeye AI Bridge exposes Hawkeye's fast local search capabilities and overview through the Model Context Protocol (MCP), making it possible for AI coding assistants to search large codebases, assets, sounds files, models, text files, localization files, and project content through Hawkeye.
+Hawkeye AI Bridge exposes Hawkeye's fast local search capabilities through MCP, making it possible for AI coding assistants to search large codebases, assets, sound files, models, text files, localization files, and project content through Hawkeye.
 
 Hawkeye runs locally/on-premises. Your code is not uploaded by Hawkeye, and Hawkeye itself does not use AI for indexing or searching.
 
-This repository contains setup instructions, configuration examples, and MCP metadata only. Hawkeye and Hawkeye AI Bridge are proprietary software owned by Zaragsoft.
+<img width="1371" height="841" alt="image" src="https://github.com/user-attachments/assets/2ce83c09-1302-4e07-b226-d23d14b676ee" />
+
+---
+
+## Table of Contents
+
+- [What is this?](#what-is-this)
+- [Why use Hawkeye AI Bridge?](#why-use-hawkeye-ai-bridge)
+- [Installation](#installation)
+- [Client Setup](#client-setup)
+  - [VS Code](#vs-code)
+  - [Cursor](#cursor)
+  - [Claude Desktop](#claude-desktop)
+  - [Claude Skill](#claude-skill)
+  - [OpenCode](#opencode)
+- [Example Prompts](#example-prompts)
+- [Privacy and Security](#privacy-and-security)
+- [Requirements](#requirements)
+- [Supported Platforms](#supported-platforms)
+- [Links](#links)
+- [Ownership](#ownership)
+
+---
 
 ## What is this?
 
@@ -14,9 +36,11 @@ This repository is the official public setup and discovery repository for using 
 
 It does not contain the proprietary Hawkeye AI Bridge source code.
 
-## Why use Hawkeye AI Bridge with VS Code?
+---
 
-Hawkeye helps developers quickly search and understand large projects. With MCP support, VS Code Agent Chat and other MCP-compatible tools can ask Hawkeye for fast local search results saving tokens on each call using it.
+## Why use Hawkeye AI Bridge?
+
+Hawkeye helps developers quickly search and understand large projects reducing tribal knowledge on the way. With MCP support, AI coding assistants can ask Hawkeye for fast local search results, saving lots of tokens on each call.
 
 Typical use cases:
 
@@ -28,35 +52,111 @@ Typical use cases:
 - Better overview.
 - Token savings listed below.
 
-<img width="1371" height="841" alt="image" src="https://github.com/user-attachments/assets/2ce83c09-1302-4e07-b226-d23d14b676ee" />
-
+---
 
 ## Installation
 
 1. Download and install Hawkeye from:
    https://www.zaragsoft.se/downloads
+   Video walkthrough: https://www.youtube.com/watch?v=l1J-G36QSwI
 
 2. Download and install Hawkeye AI Bridge from:
    https://www.zaragsoft.se/aibridge
 
-3. Open VS Code.
+3. Follow the setup guide for your AI client below.
 
-4. Add the MCP server configuration.
+---
 
-5. Open Copilot Chat in Agent Mode.
+## Client Setup
 
-6. Use the Hawkeye MCP tools from Agent Chat.
+### VS Code
 
-## VS Code MCP configuration
-
-### Windows example
+Open your MCP settings and add:
 
 ```json
 {
   "servers": {
     "hawkeye": {
       "type": "stdio",
-      "command": "C:\\Program Files\\Hawkeye\\HawkeyeAIBridge.exe",
+      "command": "C:\\Program Files\\Hawkeye\\AIBridge\\HawkeyeAIBridge.exe",
+      "args": []
+    }
+  }
+}
+```
+
+Then open Copilot Chat in Agent Mode and use the Hawkeye tools.
+
+Adjust the path if Hawkeye AI Bridge is installed somewhere else.
+
+---
+
+### Cursor
+
+Open **Settings → Tools & MCP → New MCP Server** and add:
+
+```json
+{
+  "mcpServers": {
+    "hawkeye": {
+      "command": "cmd",
+      "args": ["/c", "C:\\Program Files\\Hawkeye\\AIBridge\\HawkeyeAIBridge.exe"],
+      "env": {}
+    }
+  }
+}
+```
+
+Adjust the path if Hawkeye AI Bridge is installed somewhere else.
+
+---
+
+### Claude Desktop
+
+Add the following to your Claude Desktop MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "hawkeye": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\Hawkeye\\AIBridge\\HawkeyeAIBridge.exe",
+      "args": []
+    }
+  }
+}
+```
+
+See `examples/claude-desktop-example.json` for a full example.
+
+---
+
+### Claude Skill
+
+Copy `hawkeye-search.skill` to one of these locations:
+
+**Global (all projects):**
+```
+~/.claude/skills/
+```
+
+**Workspace-specific:**
+```
+.claude/skills/
+```
+
+---
+
+### OpenCode
+
+Add to your OpenCode MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "hawkeye": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\Hawkeye\\AIBridge\\HawkeyeAIBridge.exe",
       "args": []
     }
   }
@@ -65,29 +165,26 @@ Typical use cases:
 
 Adjust the path if Hawkeye AI Bridge is installed somewhere else.
 
-### Install the Hawkeye skill
+---
 
-Copy `hawkeye-search.skill` to one of these locations:
-
-**Global (all VS Code projects):**
-~/.claude/skills/
-
-**Or workspace-specific:**
-.claude/skills/
-
-## Example prompts
+## Example Prompts
 
 Ask your AI coding assistant:
 
+- List groups inside Hawkeye to find all the groups.
 - Use Hawkeye to find all references to this class.
 - Search the workspace for where this asset name is used.
-- Find likely files related to the inventory system.
+- Find likely files related to the inventory system in group 4,7.
 - Search for this localization key across the project.
 - Find where this Blueprint or Unreal asset is referenced.
 - Show me files related to feature loadout before editing code.
+- Find all the sounds for explosion inside groups 1,5,7
 - Use Hawkeye to find code and content references before changing this file.
+- If you do not specify any groups then all groups will be used.
 
-## Privacy and security
+---
+
+## Privacy and Security
 
 - Hawkeye runs locally/on-premises.
 - Hawkeye does not upload your source code.
@@ -95,53 +192,32 @@ Ask your AI coding assistant:
 - The MCP server only exposes Hawkeye functionality to tools you configure locally.
 - You control which MCP clients can connect to it.
 - Always review AI-generated code changes before applying them.
+- Our privacy guidelines are available here - https://www.zaragsoft.se/privacy
+
+---
 
 ## Requirements
 
 - Hawkeye installed.
 - Hawkeye AI Bridge installed.
-- VS Code with Agent Mode / MCP support.
-- A local project indexed by Hawkeye. Video on how to setup here:
-  https://www.youtube.com/watch?v=l1J-G36QSwI
+- An MCP-compatible AI coding assistant (VS Code, Cursor, Claude Desktop, etc.).
+- A local project indexed by Hawkeye.
 
-## Supported platforms
+---
+
+## Supported Platforms
 
 - Windows: supported.
 
-## Repository contents
-
-```text
-hawkeye-aibridge-mcp/
-  README.md
-  LICENSE.md
-  SECURITY.md
-  CHANGELOG.md
-
-  .mcp/
-    server.json
-
-  examples/
-    vscode-mcp-windows.json
-    vscode-mcp-linux.json
-    claude-desktop-example.json
-
-  docs/
-    install-vscode.md
-    install-claude.md
-    troubleshooting.md
-    tools.md
-    privacy-and-security.md
-    faq.md
-
-  images/
-    .gitkeep
-```
+---
 
 ## Links
 
 - Hawkeye AI Bridge: https://www.zaragsoft.se/aibridge
 - Hawkeye: https://www.zaragsoft.se/
 - Support: info@zaragsoft.se
+
+---
 
 ## Ownership
 
