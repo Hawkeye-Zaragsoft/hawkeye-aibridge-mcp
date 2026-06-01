@@ -21,7 +21,7 @@ Hawkeye runs locally/on-premises. Your code is not uploaded by Hawkeye, and Hawk
   - [VS Code / GitHub Copilot](#vs-code--github-copilot)
   - [Cursor](#cursor)
   - [OpenCode](#opencode)
-- [Installing the Skill](#installing-the-skill)
+- [Installing the Skill for Claude](#installing-the-skill-for-claude)
 - [Available Tools](#available-tools)
 - [Token Savings](#token-savings)
 - [Example Prompts](#example-prompts)
@@ -251,7 +251,7 @@ Once both are in place, restart OpenCode and try: *"Find where PlayerController 
 
 ---
 
-## Installing the Skill
+## Installing the Skill for Claude
 
 The Skill teaches Claude *when* and *how* to use the Hawkeye tools. Without it, Claude has to guess from tool descriptions alone — results will be worse.
 

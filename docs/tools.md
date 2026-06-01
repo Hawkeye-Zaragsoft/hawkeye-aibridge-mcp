@@ -15,10 +15,10 @@ Searches the indexed Hawkeye project and returns results as compact `file:line` 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `query` | string | ✅ | The search term — symbol name, filename, string literal, asset name, etc. |
-| `groupMasks` | string[] | ❌ | Filter results to specific Hawkeye groups (e.g. `["Source", "Content"]`). Omit to search all groups. |
+| `groupMasks` | string[] | ❌ | Filter results to specific Hawkeye groups by numeric mask (e.g. `["12"]` or `["4","7"]`). Use `hawkeye_get_groups` to look up mask values. Omit to search all groups. |
 | `maxResults` | integer | ❌ | Maximum number of results to return. Defaults to the value in settings.json (50). |
 
-**Returns:** A JSON object with `query`, `total_results`, and a `results` array of `{ file, line }` pairs.
+**Returns:** A JSON object with `query`, `total_hits`, `total_files`, and a `results` array grouped by file.
 
 **Example prompts:**
 - *"Search for PlayerController using Hawkeye."*
@@ -30,11 +30,12 @@ Searches the indexed Hawkeye project and returns results as compact `file:line` 
 ```json
 {
   "query": "PlayerController",
-  "total_results": 47,
+  "total_hits": 47,
+  "total_files": 3,
   "results": [
-    { "file": "D:/Project/Source/Player/PlayerController.cpp", "line": 1 },
-    { "file": "D:/Project/Source/Player/PlayerController.h", "line": 1 },
-    { "file": "D:/Project/Source/GameMode/GameMode.cpp", "line": 34 }
+    { "file": "D:/Project/Source/Player/PlayerController.cpp", "lines": [1, 45, 120] },
+    { "file": "D:/Project/Source/Player/PlayerController.h", "lines": [1, 12] },
+    { "file": "D:/Project/Source/GameMode/GameMode.cpp", "lines": [34] }
   ]
 }
 ```
@@ -50,7 +51,7 @@ Searches the indexed Hawkeye project and returns full results including file pat
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `query` | string | ✅ | The search term. |
-| `groupMasks` | string[] | ❌ | Filter results to specific Hawkeye groups. Omit to search all groups. |
+| `groupMasks` | string[] | ❌ | Filter results to specific Hawkeye groups by numeric mask (e.g. `["12"]`). Use `hawkeye_get_groups` to look up mask values. Omit to search all groups. |
 | `maxResults` | integer | ❌ | Maximum number of results to return. Defaults to the value in settings.json (50). |
 
 **Returns:** Full Hawkeye search response with file paths, line numbers, and content snippets.
@@ -231,6 +232,24 @@ All parameters are optional — omit any you do not want to change.
 - *"Update the Hawkeye path to D:/Tools/Hawkeye/hawkeye.exe."*
 - *"Set the default max results to 100."*
 - *"Change Hawkeye to case-insensitive search."*
+
+---
+
+---
+
+## Utility Tools
+
+### copy_to_clipboard
+
+Copies text to the system clipboard. Useful for transferring search results or file paths to other applications without manual selection.
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `text` | string | ✅ | The text to copy to the clipboard. |
+
+**Returns:** `{ success: true }`
 
 ---
 

@@ -12,22 +12,30 @@ No. Users can suggest documentation changes in this repository, but they cannot 
 
 ## Does Hawkeye upload my code?
 
-No. Hawkeye runs locally/on-premises.
+No. Hawkeye runs locally/on-premises. Your code is never uploaded.
 
 ## Does Hawkeye use AI?
 
 Hawkeye itself does not use AI for indexing or searching.
 
-Hawkeye AI Bridge allows MCP-compatible AI assistants to query Hawkeye, but Hawkeye’s own search remains local. As well as the AI Bridge.
+Hawkeye AI Bridge allows MCP-compatible AI assistants to query Hawkeye, but Hawkeye's own search remains entirely local.
 
-## Does this work with VS Code Agent Chat?
+## Which AI clients does this work with?
 
-Yes. This repository is primarily intended to document how to use Hawkeye AI Bridge with VS Code Agent Chat through MCP.
+Hawkeye AI Bridge works with any MCP-compatible client. Verified clients include:
 
-## Does this work with Claude Desktop or other MCP clients?
-
-The bridge is intended for MCP-compatible clients. This repository can include examples for other clients as they are verified.
+- **Claude Desktop** — install via `.mcpb` bundle, no manual config needed.
+- **Claude Code (CLI)** — register the exe with `claude mcp add`, install the Skill.
+- **VS Code / GitHub Copilot** — register the exe in `.vscode/mcp.json` or user `mcp.json`, use Agent mode.
+- **Cursor** — register via Settings → Tools & MCP, use the `cmd /c` workaround for paths with spaces.
+- **OpenCode** — add to `opencode.json`, extract the `.skill` zip for the skill.
 
 ## Do I need Hawkeye installed?
 
-Yes. Hawkeye AI Bridge requires Hawkeye functionality to be available locally. You can download a trial version at https://www.zaragsoft.se/downloads
+Yes. Hawkeye AI Bridge requires Hawkeye to be available locally. You can download a trial version at https://www.zaragsoft.se/downloads
+
+## Do I need to install the Skill?
+
+For **Claude Code**, **Claude Desktop**, **Cursor**, and **OpenCode** — yes, the Skill teaches the AI when and how to use Hawkeye tools correctly.
+
+For **VS Code / GitHub Copilot** — no, VS Code uses Copilot's own context system and doesn't use `.skill` files.
