@@ -1,0 +1,18 @@
+startCommand
+  type stdio
+  configSchema
+    type object
+    properties
+      hawkeyePath
+        type string
+        title Hawkeye Executable Path
+        description 
+          Full path to hawkeye.exe. Leave empty to use the default installation
+          path (CProgram FilesHawkeyehawkeye.exe).
+        default CProgram FilesHawkeyehawkeye.exe
+    required []
+  commandFunction -
+    (config) = ({
+      command CProgram FilesHawkeyeAIBridgeHawkeyeAIBridge.exe,
+      args []
+    })
