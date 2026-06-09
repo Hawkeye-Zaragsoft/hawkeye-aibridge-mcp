@@ -7,6 +7,8 @@ Hawkeye AI Bridge exposes Hawkeye's fast local search capabilities through MCP, 
 Hawkeye runs locally/on-premises. Your code is not uploaded by Hawkeye, and Hawkeye itself does not use AI for indexing or searching.
 
 <img width="1371" height="841" alt="image" src="https://github.com/user-attachments/assets/2ce83c09-1302-4e07-b226-d23d14b676ee" />
+<img width="759" height="919" alt="image" src="https://github.com/user-attachments/assets/e896da36-21d6-44d3-91d2-bc04d4298f0c" />
+
 
 ---
 
