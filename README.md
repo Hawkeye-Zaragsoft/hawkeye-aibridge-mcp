@@ -446,4 +446,5 @@ See [LICENSE](LICENSE) for complete terms.
 - **Hawkeye**: https://www.zaragsoft.se/downloads
 - **Hawkeye AI Bridge**: https://www.zaragsoft.se/aibridge
 - **Claude Code**: https://docs.claude.com/en/docs/build-with-claude/claude-code
+- **Smithery**: [![smithery badge](https://smithery.ai/badge/zaragsoft/hawkeye-aibridge)](https://smithery.ai/servers/zaragsoft/hawkeye-aibridge)
 - **Questions or feedback about Hawkeye AI Bridge**: info@zaragsoft.se
