@@ -1,14 +1,19 @@
 # Hawkeye AI Bridge MCP Server
 
-Use Hawkeye from AI coding assistants via the Model Context Protocol (MCP).
+Local codebase search for Claude Code, VS Code, Cursor, and AI agents.
 
-Hawkeye AI Bridge exposes Hawkeye's fast local search capabilities through MCP, making it possible for AI coding assistants to search large codebases, assets, sound files, models, text files, localization files, and project content through Hawkeye.
+Hawkeye AI Bridge lets AI coding assistants query Hawkeye’s local project index through MCP, so they can find exact references across large codebases, assets, scripts, localization, config files, and project content without uploading the full repository.
 
-Hawkeye runs locally/on-premises. Your code is not uploaded by Hawkeye, and Hawkeye itself does not use AI for indexing or searching.
+Instead of giving an AI agent huge raw grep output, Hawkeye can return compact file/line results that help the agent decide which files are actually worth reading next.
+
+Search large projects locally
+Reduce token usage from noisy raw search output
+Find exact references across code and non-code project files
+Useful for C++, C#, Unreal Engine, Unity, legacy projects, and proprietary codebases
+Hawkeye runs locally/on-premises and does not use AI for indexing or searching
 
 <img width="1371" height="841" alt="image" src="https://github.com/user-attachments/assets/2ce83c09-1302-4e07-b226-d23d14b676ee" />
 <img width="759" height="919" alt="image" src="https://github.com/user-attachments/assets/e896da36-21d6-44d3-91d2-bc04d4298f0c" />
-
 
 ---
 
