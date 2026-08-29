@@ -36,8 +36,7 @@ Error: Failed to start Hawkeye process
 
 ## Skill isn't being used by Claude
 
-- Confirm the file exists at `%USERPROFILE%\.claude\skills\hawkeye-search\SKILL.md`.
-- Make sure you didn't end up with `SKILL.md.skill` — Windows may hide the original `.skill` extension. Enable "File name extensions" in File Explorer's View menu to check.
+- Confirm the file exists at `%USERPROFILE%\.claude\skills\hawkeye-search\SKILL.md` **and** that it's a plain text file, not the `.skill` archive under a different name. Right-click it → Properties; if the size matches the original `.skill` file (~14 KB) and it won't open in a text editor, it was renamed instead of extracted — delete it and re-run the `Expand-Archive` step from [install-claude.md](install-claude.md).
 - Restart your Claude Code session — Skills are loaded at session start.
 
 ## Cursor: connection failed with path error

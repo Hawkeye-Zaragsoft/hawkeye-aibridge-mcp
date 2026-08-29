@@ -21,11 +21,11 @@
    ```powershell
    claude mcp add hawkeye --scope user -- "C:\Program Files\Hawkeye\AIBridge\HawkeyeAIBridge.exe"
    ```
-4. **Install the Skill** so Claude knows when to use Hawkeye:
+4. **Install the Skill** so Claude knows when to use Hawkeye. `hawkeye-search.skill` is a zip archive (it just contains `SKILL.md`), so it needs to be extracted, not renamed:
    ```powershell
    $skillDir = "$env:USERPROFILE\.claude\skills\hawkeye-search"
    New-Item -ItemType Directory -Force -Path $skillDir | Out-Null
-   Copy-Item "C:\Program Files\Hawkeye\AIBridge\hawkeye-search.skill" "$skillDir\SKILL.md"
+   Expand-Archive -Path "C:\Program Files\Hawkeye\AIBridge\hawkeye-search.skill" -DestinationPath $skillDir -Force
    ```
 5. **Verify** — close and reopen your terminal, then run:
    ```powershell
