@@ -99,11 +99,11 @@ Typical use cases:
    ```powershell
    claude mcp add hawkeye --scope user -- "C:\Program Files\Hawkeye\AIBridge\HawkeyeAIBridge.exe"
    ```
-4. **Install the Skill** so Claude knows when to use Hawkeye:
+4. **Install the Skill** so Claude knows when to use Hawkeye. `hawkeye-search.skill` is a zip archive (it just contains `SKILL.md`), so it needs to be extracted, not renamed:
    ```powershell
    $skillDir = "$env:USERPROFILE\.claude\skills\hawkeye-search"
    New-Item -ItemType Directory -Force -Path $skillDir | Out-Null
-   Copy-Item "C:\Program Files\Hawkeye\AIBridge\hawkeye-search.skill" "$skillDir\SKILL.md"
+   Expand-Archive -Path "C:\Program Files\Hawkeye\AIBridge\hawkeye-search.skill" -DestinationPath $skillDir -Force
    ```
 5. **Verify** — close and reopen your terminal, then run:
    ```powershell
@@ -262,22 +262,22 @@ Once both are in place, restart OpenCode and try: *"Find where PlayerController 
 
 The Skill teaches Claude *when* and *how* to use the Hawkeye tools. Without it, Claude has to guess from tool descriptions alone — results will be worse.
 
-The shipped file is called `hawkeye-search.skill` but Claude Code expects it to be named `SKILL.md` inside a named folder.
+The shipped file is called `hawkeye-search.skill`, but it's actually a zip archive containing a single `SKILL.md` — it needs to be **extracted**, not renamed. (Renaming the zip to `SKILL.md` produces a file with that name but zip contents inside, which Claude can't read as a skill.)
 
 **PowerShell (one command):**
 
 ```powershell
 $skillDir = "$env:USERPROFILE\.claude\skills\hawkeye-search"
 New-Item -ItemType Directory -Force -Path $skillDir | Out-Null
-Copy-Item "C:\Program Files\Hawkeye\AIBridge\hawkeye-search.skill" "$skillDir\SKILL.md"
+Expand-Archive -Path "C:\Program Files\Hawkeye\AIBridge\hawkeye-search.skill" -DestinationPath $skillDir -Force
 ```
 
 **Manual:**
 
 1. Open File Explorer and navigate to `%USERPROFILE%\.claude\skills\` (create the `skills` folder if it doesn't exist).
 2. Create a new folder named `hawkeye-search`.
-3. Copy `hawkeye-search.skill` into it.
-4. Rename the file from `hawkeye-search.skill` to `SKILL.md`. (Enable "File name extensions" in File Explorer's View menu if you can't see the extension.)
+3. Right-click `hawkeye-search.skill` and choose **Extract All...**, then extract into the `hawkeye-search` folder you just created. (Windows recognizes the `.skill` file as a zip archive even though the extension isn't `.zip` — if "Extract All" isn't offered, copy the file, rename the copy's extension to `.zip`, then extract that instead.)
+4. Confirm the result is `hawkeye-search\SKILL.md` — a plain text file, not the original archive.
 
 > To restrict the Skill to a single project, place `SKILL.md` at `<your-project>\.claude\skills\hawkeye-search\SKILL.md` instead.
 
@@ -350,7 +350,7 @@ When a new version of `HawkeyeAIBridge.exe` is released:
   claude mcp add hawkeye --scope user -- "C:\Program Files\Hawkeye\AIBridge\HawkeyeAIBridge.exe"
   ```
 
-When a new `hawkeye-search.skill` ships, repeat the Skill install step — `Copy-Item` will overwrite the existing `SKILL.md`.
+When a new `hawkeye-search.skill` ships, repeat the Skill install step — `Expand-Archive -Force` will overwrite the existing `SKILL.md`.
 
 ---
 
@@ -407,8 +407,7 @@ Error: Failed to start Hawkeye process
 
 ### Skill isn't being used by Claude
 
-- Confirm the file exists at `%USERPROFILE%\.claude\skills\hawkeye-search\SKILL.md`.
-- Make sure you didn't end up with `SKILL.md.skill` — Windows may hide the original `.skill` extension. Enable "File name extensions" in File Explorer's View menu to check.
+- Confirm the file exists at `%USERPROFILE%\.claude\skills\hawkeye-search\SKILL.md` **and** that it's a plain text file, not the `.skill` archive under a different name. Right-click it → Properties; if the size matches the original `.skill` file (~14 KB) and it won't open in a text editor, it was renamed instead of extracted — delete it and re-run the `Expand-Archive` step above.
 - Restart your Claude Code session — Skills are loaded at session start.
 
 ### Cursor: connection failed with path error
