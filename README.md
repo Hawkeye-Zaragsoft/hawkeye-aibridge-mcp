@@ -1,5 +1,11 @@
 # Hawkeye AI Bridge MCP Server
 
+Runway at 10M tokens/month - Days until a hypothetical 10M/month context budget is exhausted, if every one of 50 daily search steps looked like this one. Longer bar, more runway.
+* Broad grep - 1.6 days
+* Compact grep - 7.0 days
+* Hawkeye indexed - 29.0 days
+<img width="840" height="782" alt="image" src="https://github.com/user-attachments/assets/84970eef-1845-43d5-8dbf-1d034078f327" />
+
 Local codebase search for Claude Code, VS Code, Cursor, and AI agents.
 
 Hawkeye AI Bridge lets AI coding assistants query Hawkeye’s local project index through MCP, so they can find exact references across large codebases, assets, scripts, localization, config files, and project content without uploading the full repository.
