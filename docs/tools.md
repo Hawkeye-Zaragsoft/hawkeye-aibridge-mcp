@@ -175,6 +175,21 @@ Verifies that Hawkeye is installed, reachable, and responding. Useful for diagno
 
 ---
 
+### hawkeye_reload_index
+
+Triggers a headless Hawkeye index reload — no window opens and nothing steals focus. Use this when a search returns zero or unexpected results for something that was just created or edited; the index may simply be stale rather than the content missing. This is a manual, on-request action — it is not called automatically on empty search results, and it is not scoped to a single group; it reloads the whole index.
+
+**Parameters:** None.
+
+**Returns:** `{ success: true, message: "Hawkeye reload triggered" }`
+
+**Example prompts:**
+- *"Reload Hawkeye's index."*
+- *"It's not finding the file I just added — can you refresh Hawkeye?"*
+- *"Rescan the project in Hawkeye."*
+
+---
+
 ### validate_hawkeye_path
 
 Checks whether the Hawkeye executable path currently saved in settings actually exists on disk. Use this when `hawkeye_health_check` fails or when the user reports Hawkeye is not being found.
