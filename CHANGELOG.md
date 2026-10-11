@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.6] - 2026-10-11
+
+Changed:
+
+- Server `instructions` in the MCP `initialize` response, rewritten tool descriptions and skill: generic "where is X defined" lookups now go to Hawkeye first.
+- `docs/tools.md` now documents `hawkeye_expand_context` and Hawkeye query syntax (unquoted words = separate terms, `"quoted"` = exact phrase, `.ext`, `-term`).
+
+Fixed:
+
+- `hawkeye_expand_context` no longer fails the whole call when a hit's line is past the end of its file.
+
 ## [1.0.5] - 2026-09-28
 
 Added:

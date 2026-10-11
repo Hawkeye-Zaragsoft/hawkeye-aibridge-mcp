@@ -7,12 +7,12 @@
     "url": "https://github.com/Hawkeye-Zaragsoft/hawkeye-aibridge-mcp",
     "source": "github"
   },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/Hawkeye-Zaragsoft/hawkeye-aibridge-mcp/releases/download/HawkeyeAIBridge/hawkeye-ai-bridge-1.0.5.mcpb",
-      "fileSha256": "618e24c1a076e228d0529499faf1ade9e9f6e54f0006e246f415d9b4318cdbdb",
+      "identifier": "https://github.com/Hawkeye-Zaragsoft/hawkeye-aibridge-mcp/releases/download/HawkeyeAIBridge/hawkeye-ai-bridge-1.0.6.mcpb",
+      "fileSha256": "b234d03289edd4b095e38adb45e654e5e39bde86b5e2d785647b4058dfe56f74",
       "transport": {
         "type": "stdio"
       }

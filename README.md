@@ -294,6 +294,7 @@ Expand-Archive -Path "C:\Program Files\Hawkeye\AIBridge\hawkeye-search.skill" -D
 | Tool | Description |
 |------|-------------|
 | `hawkeye_search_minimal` | Token-efficient search — returns only file paths and line numbers. **91% fewer tokens** than grep. Best for chat-based lookups. |
+| `hawkeye_expand_context` | Takes the `{file, lines}` hits from `hawkeye_search_minimal` and returns merged, context-expanded code snippets in one call — no per-range `Read` calls needed. Server-side merging (default `mergeGap=8`) collapses nearby hits into single blocks. |
 | `hawkeye_search` | Full search with metadata — returns complete result objects with context. Best for detailed analysis. |
 | `hawkeye_get_groups` | List all searchable code groups configured in Hawkeye. |
 | `hawkeye_get_editors` | List configured editors for opening files. |

@@ -14,11 +14,19 @@ Searches the indexed Hawkeye project and returns results as compact `file:line` 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `query` | string | ✅ | The search term — symbol name, filename, string literal, asset name, etc. |
+| `query` | string | ✅ | The search term — symbol name, filename, string literal, asset name, etc. Supports the same syntax as Hawkeye's search box (see *Query syntax* below). |
 | `groupMasks` | string[] | ❌ | Filter results to specific Hawkeye groups by numeric mask (e.g. `["12"]` or `["4","7"]`). Use `hawkeye_get_groups` to look up mask values. Omit to search all groups. |
 | `maxResults` | integer | ❌ | Maximum number of results to return. Defaults to the value in settings.json (50). |
 
 **Returns:** A JSON object with `query`, `total_hits`, `total_files`, and a `results` array grouped by file.
+
+**Query syntax:**
+
+- Unquoted words are searched as separate terms and the hits for each term are listed (broad): `sso credential handler` matches lines containing `sso`, `credential` or `handler`.
+- `"quoted text"` searches for that exact phrase only (precise): `"sso credentials handler"`.
+- `.cs` (any extension) limits results to files of that type; `-term` removes lines that contain `term`.
+
+Hawkeye often indexes several unrelated projects. If a broad search returns hits from other folders, call `hawkeye_get_groups` and pass `groupMasks` to scope the search to the current project.
 
 **Example prompts:**
 - *"Search for PlayerController using Hawkeye."*
@@ -37,6 +45,44 @@ Searches the indexed Hawkeye project and returns results as compact `file:line` 
     { "file": "D:/Project/Source/Player/PlayerController.h", "lines": [1, 12] },
     { "file": "D:/Project/Source/GameMode/GameMode.cpp", "lines": [34] }
   ]
+}
+```
+
+---
+
+### hawkeye_expand_context
+
+Takes the `{file, lines}` hits returned by `hawkeye_search_minimal` and returns merged code snippets read from disk, in a single call. Hits that are close together in the same file are merged into one snippet, so there is no need to read each hit individually. This is the recommended second step after `hawkeye_search_minimal`.
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `hits` | array | ✅ | Array of `{ "file": "<absolute path>", "lines": [<1-indexed line numbers>] }` objects — typically the `results` array from `hawkeye_search_minimal`, or a filtered subset. |
+| `contextBefore` | integer | ❌ | Lines of context before each cluster's first hit. Default 2. |
+| `contextAfter` | integer | ❌ | Lines of context after each cluster's last hit. Default 5. |
+| `mergeGap` | integer | ❌ | Hits within this many lines of each other are merged into one snippet. Default 8. |
+| `maxTotalLines` | integer | ❌ | Cap on the total lines returned across the whole response. Default 1000. If exceeded, `truncated` is `true` and the cut clusters are listed in `truncated_clusters`; call again with just those hits. |
+
+**Returns:** `{ results, truncated, truncated_clusters }`. Each entry in `results` has the `file` and a `snippets` array of `{ hits, range, text }`. If a file cannot be read, or a hit line is past the end of the file, that entry carries an `error` message and the remaining hits are still returned.
+
+**Example prompts:**
+- *"Find where OnDeath is handled and show me the surrounding code."*
+- *"Search for ThePlayerList and give me context around each usage."*
+
+**Example output:**
+```json
+{
+  "results": [
+    {
+      "file": "D:/Project/Source/Player/PlayerController.cpp",
+      "snippets": [
+        { "hits": [120], "range": [118, 125], "text": "..." }
+      ]
+    }
+  ],
+  "truncated": false,
+  "truncated_clusters": []
 }
 ```
 
@@ -177,7 +223,7 @@ Verifies that Hawkeye is installed, reachable, and responding. Useful for diagno
 
 ### hawkeye_reload_index
 
-Triggers a headless Hawkeye index reload — no window opens and nothing steals focus. Use this when a search returns zero or unexpected results for something that was just created or edited; the index may simply be stale rather than the content missing. This is a manual, on-request action — it is not called automatically on empty search results, and it is not scoped to a single group; it reloads the whole index.
+Triggers a headless Hawkeye index reload — no window opens and nothing steals focus. Use this when you ask to reload, refresh or rescan the index, for example after adding or editing files. It blocks until the reload finishes, so a search issued right after sees the new index. It is a manual, on-request action — it is not called automatically on empty search results — and it is not scoped to a single group; it reloads the whole index.
 
 **Parameters:** None.
 
