@@ -10,6 +10,7 @@ Changed:
 Fixed:
 
 - `hawkeye_expand_context` no longer fails the whole call when a hit's line is past the end of its file.
+- License text in the released bundle corrected; outdated setup guide removed from the bundle.
 
 ## [1.0.5] - 2026-09-28
 

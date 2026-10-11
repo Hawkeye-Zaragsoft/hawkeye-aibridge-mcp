@@ -12,7 +12,7 @@
     {
       "registryType": "mcpb",
       "identifier": "https://github.com/Hawkeye-Zaragsoft/hawkeye-aibridge-mcp/releases/download/HawkeyeAIBridge/hawkeye-ai-bridge-1.0.6.mcpb",
-      "fileSha256": "b234d03289edd4b095e38adb45e654e5e39bde86b5e2d785647b4058dfe56f74",
+      "fileSha256": "4d93cfec6eea7b9b83143ac59be319c6a3b14ca589863249e800351f727c13d0",
       "transport": {
         "type": "stdio"
       }
